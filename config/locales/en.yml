@@ -6,11 +6,11 @@ en:
   label_by_status: "Distribution by Status"
   field_progress: "Progress"
   field_total_issues: "Total Issues"
-  field_closed_issues: "Closed Issues"
+  field_closed_issues: "Completed Issues"
   field_issues: "issues"
-  field_from: "of"
+  field_from: "from"
   field_total: "Total"
-  field_closed: "Closed"
+  field_closed: "Completed"
   field_count: "Count"
   field_story_points: "Story Points"
   field_tracker: "Issue Type"
@@ -38,7 +38,7 @@ en:
   label_priority_weight_low: "Low Priority Weight"
   
   # Story points patterns
-  label_story_points_patterns: "Story Points Patterns"
+  label_story_points_patterns: "Story Points Search Patterns"
   
   # Performance settings
   label_js_init_delay: "JavaScript Initialization Delay"
@@ -57,8 +57,9 @@ en:
   label_include_subtasks: "Include Subtasks"
   label_include_closed_issues: "Include Closed Issues"
   label_minimum_issues_count: "Minimum Issues Count"
-  label_exclude_trackers: "Exclude Trackers"
+  label_exclude_trackers: "Exclude Issue Types"
   label_exclude_priorities: "Exclude Priorities"
+  label_count_100_percent_as_closed: "Count 100% as Completed"
   
   # Units
   label_milliseconds: "ms"
@@ -66,13 +67,95 @@ en:
   
   # Help
   help_default_calculation_method: "Select the default method for calculating project progress"
-  help_story_points_patterns: "List of patterns to search for custom fields with story points (comma-separated)"
+  help_story_points_patterns: "List of patterns for finding custom fields with story points (comma-separated)"
   help_js_init_delay: "Delay before JavaScript initialization (recommended: 1000ms)"
   help_js_retry_interval: "Interval between attempts to find projects on page (recommended: 500ms)"
   help_js_max_retry_time: "Maximum time to wait for projects to appear (recommended: 10000ms)"
-  help_js_animation_duration: "Duration of progress bar animations (recommended: 300ms)"
-  help_cache_calculation: "Enable caching of progress calculations for better performance"
+  help_js_animation_duration: "Progress bar animation duration (recommended: 300ms)"
+  help_cache_calculation: "Enable caching of progress calculations to improve performance"
   help_cache_duration: "Cache lifetime in seconds (recommended: 600sec = 10min)"
   help_enable_debug_logging: "Enable detailed logging for debugging (for developers only)"
   help_log_calculation_details: "Log detailed calculation information (may slow down performance)"
   help_show_in_sidebar: "Show brief progress in project sidebar"
+  
+  # Priority weights
+  label_priority_weights: "Priority Weights"
+  
+  # New settings for parent projects
+  label_parent_project_settings: "Parent Project Settings"
+  label_parent_project_include_own_issues: "Include Parent Project's Own Issues"
+  label_parent_project_calculation_method: "Parent Project Calculation Method"
+  label_simple_average: "Simple Average"
+  label_weighted_average: "Weighted Average"
+  
+  help_parent_project_include_own_issues: "Include the parent project's own issues in progress calculation"
+  help_parent_project_calculation_method: "Method for calculating parent project progress from child projects"
+  help_simple_average: "Simple arithmetic average of child projects and parent project progress"
+  help_weighted_average: "Weighted average based on the number of issues in each project"
+  
+  # Progress display
+  label_show_progress: "Show Project Progress"
+  label_progress_toggle: "Toggle Progress Display"
+  label_progress_percentage: "Progress (%)"
+  label_loading_progress: "Loading progress..."
+  
+  # CSV Export
+  label_export_projects_with_progress: "Export Projects with Progress"
+  label_download_csv_with_progress: "Download CSV with Progress"
+  label_csv_export_description: "Export all projects to CSV file with progress information"
+  
+  # Historical progress
+  label_historical_progress: "Historical Progress"
+  label_calculate_progress_on_date: "Calculate Progress on Date"
+  label_target_date: "Target Date"
+  label_progress_on_date: "Progress on Date"
+  label_historical_analysis: "Historical Analysis"
+  label_progress_timeline: "Progress Timeline"
+  label_date_range: "Date Range"
+  label_from_date: "From Date"
+  label_to_date: "To Date"
+  label_show_historical_data: "Show Historical Data"
+  label_historical_settings: "Historical Settings"
+  label_enable_historical_calculation: "Enable Historical Calculation"
+  label_historical_cache_duration: "Historical Cache Duration"
+  label_max_historical_days: "Maximum Historical Days"
+  
+  help_historical_calculation: "Enable calculation of project progress for specific dates"
+  help_historical_cache_duration: "Cache duration for historical calculations in seconds"
+  help_max_historical_days: "Maximum number of days to look back for historical data"
+  
+  # Progress comparison
+  label_progress_comparison: "Progress Comparison"
+  label_current_vs_historical: "Current vs Historical"
+  label_progress_change: "Progress Change"
+  label_improvement: "Improvement"
+  label_decline: "Decline"
+  label_no_change: "No Change"
+  
+  # Time periods
+  label_last_week: "Last Week"
+  label_last_month: "Last Month"
+  label_last_quarter: "Last Quarter"
+  label_last_year: "Last Year"
+  label_custom_period: "Custom Period"
+  
+  # Charts and graphs
+  label_progress_chart: "Progress Chart"
+  label_timeline_chart: "Timeline Chart"
+  label_comparison_chart: "Comparison Chart"
+  label_export_chart: "Export Chart"
+  label_chart_type: "Chart Type"
+  label_line_chart: "Line Chart"
+  label_bar_chart: "Bar Chart"
+  label_area_chart: "Area Chart"
+  
+  # Error messages
+  label_error_calculating_historical: "Error calculating historical progress"
+  label_error_invalid_date: "Invalid date format"
+  label_error_date_too_old: "Date is too old for historical calculation"
+  label_error_no_data_for_date: "No data available for selected date"
+  
+  # Success messages
+  label_historical_calculation_complete: "Historical calculation completed successfully"
+  label_data_exported: "Data exported successfully"
+  label_chart_generated: "Chart generated successfully"
