@@ -2,11 +2,11 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_project_progress do
   name 'Project Progress Plugin'
-  author 'Your Name'
-  description 'Плагин для отображения общего прогресса по проекту'
+  author 'PatternDigital'
+  description 'Project Progress Plugin'
   version '1.0.0'
-  url 'http://example.com/plugins/redmine_project_progress'
-  author_url 'http://example.com'
+  url 'https://github.com/patterndigital/redmine_project_progress'
+  author_url 'https://patterndigital.ru'
   
   permission :view_project_progress, { :project_progress => [:index, :show] }, :require => :loggedin
   
