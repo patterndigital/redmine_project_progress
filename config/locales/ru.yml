@@ -1,0 +1,82 @@
+ru:
+  label_project_progress: "Прогресс проекта"
+  label_overall_progress: "Общий прогресс"
+  label_by_tracker: "Прогресс по типам задач"
+  label_by_version: "Прогресс по версиям"
+  label_by_status: "Распределение по статусам"
+  field_progress: "Прогресс"
+  field_total_issues: "Всего задач"
+  field_closed_issues: "Завершено задач"
+  field_issues: "задач"
+  field_from: "из"
+  field_total: "Всего"
+  field_closed: "Завершено"
+  field_count: "Количество"
+  field_story_points: "Стори-поинты"
+  field_tracker: "Тип задачи"
+  field_version: "Версия"
+  field_status: "Статус"
+  field_completed: "завершено"
+  button_back: "Назад"
+  button_details: "Подробнее"
+  
+  # Настройки
+  label_calculation_settings: "Настройки расчета"
+  label_performance_settings: "Настройки производительности"
+  label_debug_settings: "Настройки отладки"
+  label_basic_settings: "Базовые настройки"
+  
+  # Методы расчета
+  label_default_calculation_method: "Метод расчета по умолчанию"
+  label_progress_by_status: "По статусам задач"
+  label_weighted_progress: "Взвешенный по стори-поинтам"
+  label_average_progress: "Средний арифметический"
+  
+  # Веса приоритетов
+  label_priority_weight_high: "Вес высокого приоритета"
+  label_priority_weight_normal: "Вес обычного приоритета"
+  label_priority_weight_low: "Вес низкого приоритета"
+  
+  # Паттерны стори-поинтов
+  label_story_points_patterns: "Паттерны для поиска стори-поинтов"
+  
+  # Настройки производительности
+  label_js_init_delay: "Задержка инициализации JavaScript"
+  label_js_retry_interval: "Интервал повтора JavaScript"
+  label_js_max_retry_time: "Максимальное время повтора JavaScript"
+  label_js_animation_duration: "Длительность анимации"
+  label_cache_calculation: "Кэшировать расчеты"
+  label_cache_duration: "Длительность кэша"
+  
+  # Настройки отладки
+  label_enable_debug_logging: "Включить отладочное логирование"
+  label_log_calculation_details: "Логировать детали расчета"
+  
+  # Базовые настройки
+  label_show_in_sidebar: "Показывать в сайдбаре проекта"
+  label_include_subtasks: "Включать подзадачи"
+  label_include_closed_issues: "Включать закрытые задачи"
+  label_minimum_issues_count: "Минимальное количество задач"
+  label_exclude_trackers: "Исключить типы задач"
+  label_exclude_priorities: "Исключить приоритеты"
+  label_count_100_percent_as_closed: "Считать 100% как завершенные"
+  
+  # Единицы измерения
+  label_milliseconds: "мс"
+  label_seconds: "сек"
+  
+  # Справка
+  help_default_calculation_method: "Выберите метод расчета прогресса по умолчанию"
+  help_story_points_patterns: "Список паттернов для поиска пользовательских полей со стори-поинтами (через запятую)"
+  help_js_init_delay: "Задержка перед инициализацией JavaScript (рекомендуется 1000мс)"
+  help_js_retry_interval: "Интервал между попытками найти проекты на странице (рекомендуется 500мс)"
+  help_js_max_retry_time: "Максимальное время ожидания появления проектов (рекомендуется 10000мс)"
+  help_js_animation_duration: "Длительность анимации прогресс-баров (рекомендуется 300мс)"
+  help_cache_calculation: "Включить кэширование расчетов прогресса для улучшения производительности"
+  help_cache_duration: "Время жизни кэша в секундах (рекомендуется 600сек = 10мин)"
+  help_enable_debug_logging: "Включить подробное логирование для отладки (только для разработчиков)"
+  help_log_calculation_details: "Логировать детальную информацию о расчетах (может замедлить работу)"
+  help_show_in_sidebar: "Показывать краткий прогресс в сайдбаре проекта"
+  
+  # Веса приоритетов
+  label_priority_weights: "Веса приоритетов"

@@ -1,0 +1,150 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'project_progress', :plugin => 'redmine_project_progress' %>
+<% end %>
+
+<div class="box">
+  <h3><%= l(:label_calculation_settings) %></h3>
+  
+  <p>
+    <%= label_tag 'settings[default_calculation_method]', l(:label_default_calculation_method) %>
+    <%= select_tag 'settings[default_calculation_method]', 
+        options_for_select([
+          [l(:label_progress_by_status), 'progress_by_status'],
+          [l(:label_weighted_progress), 'weighted_progress'],
+          [l(:label_average_progress), 'average_progress']
+        ], settings['default_calculation_method']),
+        :class => 'select' %>
+    <br><small><%= l(:help_default_calculation_method) %></small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[story_points_patterns]', l(:label_story_points_patterns) %>
+    <%= text_field_tag 'settings[story_points_patterns]', settings['story_points_patterns'], 
+        :size => 50, :class => 'text' %>
+    <br><small><%= l(:help_story_points_patterns) %></small>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_priority_weights) %></h3>
+  
+  <p>
+    <%= label_tag 'settings[priority_weights_high]', l(:label_priority_weight_high) %>
+    <%= text_field_tag 'settings[priority_weights_high]', settings['priority_weights_high'], 
+        :size => 10, :class => 'text' %>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[priority_weights_normal]', l(:label_priority_weight_normal) %>
+    <%= text_field_tag 'settings[priority_weights_normal]', settings['priority_weights_normal'], 
+        :size => 10, :class => 'text' %>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[priority_weights_low]', l(:label_priority_weight_low) %>
+    <%= text_field_tag 'settings[priority_weights_low]', settings['priority_weights_low'], 
+        :size => 10, :class => 'text' %>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_basic_settings) %></h3>
+  
+  <p>
+    <%= label_tag 'settings[show_in_sidebar]', l(:label_show_in_sidebar) %>
+    <%= check_box_tag 'settings[show_in_sidebar]', '1', settings['show_in_sidebar'] == '1' || settings['show_in_sidebar'] == true %>
+    <br><small><%= l(:help_show_in_sidebar) %></small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[include_subtasks]', l(:label_include_subtasks) %>
+    <%= check_box_tag 'settings[include_subtasks]', '1', settings['include_subtasks'] == '1' || settings['include_subtasks'] == true %>
+    <br><small>Включать подзадачи в расчет прогресса</small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[include_closed_issues]', l(:label_include_closed_issues) %>
+    <%= check_box_tag 'settings[include_closed_issues]', '1', settings['include_closed_issues'] == '1' || settings['include_closed_issues'] == true %>
+    <br><small>Включать закрытые задачи в расчет прогресса</small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[minimum_issues_count]', l(:label_minimum_issues_count) %>
+    <%= text_field_tag 'settings[minimum_issues_count]', settings['minimum_issues_count'], 
+        :size => 10, :class => 'text' %>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[exclude_trackers]', l(:label_exclude_trackers) %>
+    <%= text_field_tag 'settings[exclude_trackers]', settings['exclude_trackers'], 
+        :size => 30, :class => 'text' %>
+    <br><small>Список типов задач для исключения (через запятую)</small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[exclude_priorities]', l(:label_exclude_priorities) %>
+    <%= text_field_tag 'settings[exclude_priorities]', settings['exclude_priorities'], 
+        :size => 30, :class => 'text' %>
+    <br><small>Список приоритетов для исключения (через запятую)</small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[count_100_percent_as_closed]', l(:label_count_100_percent_as_closed) %>
+    <%= check_box_tag 'settings[count_100_percent_as_closed]', '1', settings['count_100_percent_as_closed'] == '1' || settings['count_100_percent_as_closed'] == true %>
+    <br><small>Считать задачи с 100% выполнения как завершенные</small>
+  </p>
+</div>
+
+<div class="box">
+  <h3>Настройки родительских проектов</h3>
+  
+  <p>
+    <%= label_tag 'settings[parent_project_include_own_issues]', 'Включать собственные задачи' %>
+    <%= check_box_tag 'settings[parent_project_include_own_issues]', '1', settings['parent_project_include_own_issues'] == '1' || settings['parent_project_include_own_issues'] == true %>
+    <br><small>Включать задачи самого родительского проекта в расчет</small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[parent_project_calculation_method]', 'Метод расчета прогресса' %>
+    <%= select_tag 'settings[parent_project_calculation_method]', 
+        options_for_select([
+          ['По количеству задач (взвешенное среднее)', 'weighted_average'],
+          ['Простое среднее', 'simple_average']
+        ], settings['parent_project_calculation_method']),
+        :class => 'select' %>
+    <br><small>Выберите метод расчета прогресса для родительских проектов</small>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_performance_settings) %></h3>
+  
+  <p>
+    <%= label_tag 'settings[cache_calculation]', l(:label_cache_calculation) %>
+    <%= check_box_tag 'settings[cache_calculation]', '1', settings['cache_calculation'] == '1' || settings['cache_calculation'] == true %>
+    <br><small><%= l(:help_cache_calculation) %></small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[cache_duration]', l(:label_cache_duration) %>
+    <%= text_field_tag 'settings[cache_duration]', settings['cache_duration'], 
+        :size => 10, :class => 'text' %> <%= l(:label_seconds) %>
+    <br><small><%= l(:help_cache_duration) %></small>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_debug_settings) %></h3>
+  
+  <p>
+    <%= label_tag 'settings[enable_debug_logging]', l(:label_enable_debug_logging) %>
+    <%= check_box_tag 'settings[enable_debug_logging]', '1', settings['enable_debug_logging'] == '1' || settings['enable_debug_logging'] == true %>
+    <br><small><%= l(:help_enable_debug_logging) %></small>
+  </p>
+  
+  <p>
+    <%= label_tag 'settings[log_calculation_details]', l(:label_log_calculation_details) %>
+    <%= check_box_tag 'settings[log_calculation_details]', '1', settings['log_calculation_details'] == '1' || settings['log_calculation_details'] == true %>
+    <br><small><%= l(:help_log_calculation_details) %></small>
+  </p>
+</div>

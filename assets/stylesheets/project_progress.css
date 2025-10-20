@@ -1,0 +1,147 @@
+/* Progress bar styles */
+.progress-container {
+  margin: 10px 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar.large {
+  height: 25px;
+}
+
+.progress-bar.small {
+  height: 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to bottom, #8ec165, #7aaf4e);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+}
+
+/* Table view styles */
+table.list.projects th.progress-column-header {
+  text-align: center;
+  font-weight: bold;
+  background: #f8f8f8;
+}
+
+table.list.projects td.progress-cell {
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
+}
+
+/* Panel view styles */
+.project-progress-panel {
+  margin: 10px 0;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.project-progress-panel-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Card view styles */
+.project-progress-card {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.project-progress-card-content {
+  text-align: center;
+}
+
+/* Common styles */
+.progress-text {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+  font-weight: bold;
+}
+
+.progress-percentage {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.progress-loading {
+  color: #999;
+  font-style: italic;
+  font-size: 12px;
+  text-align: center;
+}
+
+.progress-error {
+  color: #999;
+  font-style: italic;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Color variations for all progress bars */
+.progress-fill[style*="width: 0%"] { background: #f0f0f0; }
+.progress-fill[style*="width: 10%"] { background: #ff6b6b; }
+.progress-fill[style*="width: 20%"] { background: #ff8e6b; }
+.progress-fill[style*="width: 30%"] { background: #ffb16b; }
+.progress-fill[style*="width: 40%"] { background: #ffd46b; }
+.progress-fill[style*="width: 50%"] { background: #f6e05e; }
+.progress-fill[style*="width: 60%"] { background: #d4e05e; }
+.progress-fill[style*="width: 70%"] { background: #b8e05e; }
+.progress-fill[style*="width: 80%"] { background: #9ce05e; }
+.progress-fill[style*="width: 90%"] { background: #80e05e; }
+.progress-fill[style*="width: 100%"] { background: #64c15e; }
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .project-progress-panel {
+    padding: 8px;
+  }
+  
+  .project-progress-panel-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .project-progress-card {
+    padding: 8px;
+  }
+  
+  table.list.projects th.progress-column-header,
+  table.list.projects td.progress-cell {
+    display: none;
+  }
+}

@@ -1,0 +1,122 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Ждем полной загрузки страницы
+  setTimeout(function() {
+    addProgressColumnToProjects();
+  }, 1000);
+});
+
+function addProgressColumnToProjects() {
+  const table = document.querySelector('table.list.projects');
+  if (!table) {
+    console.log('Projects table not found');
+    return;
+  }
+
+  // Добавляем заголовок колонки
+  addProgressHeader(table);
+  
+  // Добавляем ячейки прогресса
+  addProgressCells(table);
+}
+
+function addProgressHeader(table) {
+  const headerRow = table.querySelector('thead tr');
+  if (!headerRow) return;
+
+  // Проверяем, не добавлен ли уже заголовок
+  if (headerRow.querySelector('.progress-column-header')) {
+    return;
+  }
+
+  const th = document.createElement('th');
+  th.className = 'progress-column-header';
+  th.textContent = 'Прогресс';
+  th.style.width = '150px';
+  th.style.textAlign = 'center';
+  th.style.verticalAlign = 'middle';
+  headerRow.appendChild(th);
+}
+
+function addProgressCells(table) {
+  const rows = table.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    // Проверяем, не добавлена ли уже ячейка прогресса
+    if (row.querySelector('.progress-cell')) {
+      return;
+    }
+
+    const projectLink = row.querySelector('td.name a');
+    if (!projectLink) return;
+
+    const projectId = extractProjectId(projectLink.href);
+    if (!projectId) return;
+
+    const td = document.createElement('td');
+    td.className = 'progress-cell';
+    td.style.textAlign = 'center';
+    td.style.verticalAlign = 'middle';
+    td.innerHTML = '<div class="progress-loading">...</div>';
+    row.appendChild(td);
+    
+    loadProjectProgress(projectId, td);
+  });
+}
+
+function extractProjectId(url) {
+  const match = url.match(/projects\/(.+)/);
+  return match ? match[1] : null;
+}
+
+function loadProjectProgress(projectId, cell) {
+  fetch('/projects/' + projectId + '/project_progress', {
+    headers: {
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Network response was not ok');
+    return response.json();
+  })
+  .then(data => {
+    updateProgressCell(cell, data);
+  })
+  .catch(error => {
+    console.error('Error loading project progress:', error);
+    cell.innerHTML = '<div class="progress-error">N/A</div>';
+  });
+}
+
+function updateProgressCell(cell, data) {
+  if (!data || typeof data.progress_percentage === 'undefined') {
+    cell.innerHTML = '<div class="progress-error">N/A</div>';
+    return;
+  }
+
+  const percentage = data.progress_percentage;
+  const closed = data.closed_issues || 0;
+  const total = data.total_issues || 0;
+
+  // Определяем цвет в зависимости от процента завершения
+  let color;
+  if (percentage === 0) color = '#f0f0f0';
+  else if (percentage <= 20) color = '#ff6b6b';
+  else if (percentage <= 40) color = '#ffb16b';
+  else if (percentage <= 60) color = '#ffd46b';
+  else if (percentage <= 80) color = '#d4e05e';
+  else color = '#8ec165';
+
+  cell.innerHTML = `
+    <div class="project-progress-container" title="${percentage}% завершено (${closed}/${total} задач)">
+      <div class="progress-bar" style="width: 100px; height: 12px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; margin: 0 auto; overflow: hidden;">
+        <div class="progress-fill" style="width: ${percentage}%; height: 100%; background: ${color}; transition: width 0.3s ease;"></div>
+      </div>
+      <div style="font-size: 11px; margin-top: 3px;">
+        <span style="font-weight: bold;">${percentage}%</span>
+        <span style="color: #666;"> (${closed}/${total})</span>
+      </div>
+    </div>
+  `;
+}
+</script>

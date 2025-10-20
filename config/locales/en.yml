@@ -1,0 +1,78 @@
+en:
+  label_project_progress: "Project Progress"
+  label_overall_progress: "Overall Progress"
+  label_by_tracker: "Progress by Issue Types"
+  label_by_version: "Progress by Versions"
+  label_by_status: "Distribution by Status"
+  field_progress: "Progress"
+  field_total_issues: "Total Issues"
+  field_closed_issues: "Closed Issues"
+  field_issues: "issues"
+  field_from: "of"
+  field_total: "Total"
+  field_closed: "Closed"
+  field_count: "Count"
+  field_story_points: "Story Points"
+  field_tracker: "Issue Type"
+  field_version: "Version"
+  field_status: "Status"
+  field_completed: "completed"
+  button_back: "Back"
+  button_details: "Details"
+  
+  # Settings
+  label_calculation_settings: "Calculation Settings"
+  label_performance_settings: "Performance Settings"
+  label_debug_settings: "Debug Settings"
+  label_basic_settings: "Basic Settings"
+  
+  # Calculation methods
+  label_default_calculation_method: "Default Calculation Method"
+  label_progress_by_status: "By Issue Status"
+  label_weighted_progress: "Weighted by Story Points"
+  label_average_progress: "Arithmetic Average"
+  
+  # Priority weights
+  label_priority_weight_high: "High Priority Weight"
+  label_priority_weight_normal: "Normal Priority Weight"
+  label_priority_weight_low: "Low Priority Weight"
+  
+  # Story points patterns
+  label_story_points_patterns: "Story Points Patterns"
+  
+  # Performance settings
+  label_js_init_delay: "JavaScript Initialization Delay"
+  label_js_retry_interval: "JavaScript Retry Interval"
+  label_js_max_retry_time: "JavaScript Max Retry Time"
+  label_js_animation_duration: "Animation Duration"
+  label_cache_calculation: "Cache Calculations"
+  label_cache_duration: "Cache Duration"
+  
+  # Debug settings
+  label_enable_debug_logging: "Enable Debug Logging"
+  label_log_calculation_details: "Log Calculation Details"
+  
+  # Basic settings
+  label_show_in_sidebar: "Show in Project Sidebar"
+  label_include_subtasks: "Include Subtasks"
+  label_include_closed_issues: "Include Closed Issues"
+  label_minimum_issues_count: "Minimum Issues Count"
+  label_exclude_trackers: "Exclude Trackers"
+  label_exclude_priorities: "Exclude Priorities"
+  
+  # Units
+  label_milliseconds: "ms"
+  label_seconds: "sec"
+  
+  # Help
+  help_default_calculation_method: "Select the default method for calculating project progress"
+  help_story_points_patterns: "List of patterns to search for custom fields with story points (comma-separated)"
+  help_js_init_delay: "Delay before JavaScript initialization (recommended: 1000ms)"
+  help_js_retry_interval: "Interval between attempts to find projects on page (recommended: 500ms)"
+  help_js_max_retry_time: "Maximum time to wait for projects to appear (recommended: 10000ms)"
+  help_js_animation_duration: "Duration of progress bar animations (recommended: 300ms)"
+  help_cache_calculation: "Enable caching of progress calculations for better performance"
+  help_cache_duration: "Cache lifetime in seconds (recommended: 600sec = 10min)"
+  help_enable_debug_logging: "Enable detailed logging for debugging (for developers only)"
+  help_log_calculation_details: "Log detailed calculation information (may slow down performance)"
+  help_show_in_sidebar: "Show brief progress in project sidebar"

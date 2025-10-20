@@ -1,0 +1,45 @@
+<% 
+  # Проверяем настройки плагина
+  begin
+    # Сначала пытаемся прочитать сохраненные настройки
+    saved_settings = Setting.plugin_redmine_project_progress
+    if saved_settings.present?
+      show_in_sidebar = saved_settings['show_in_sidebar'] == '1' || saved_settings['show_in_sidebar'] == true
+    else
+      # Если сохраненных настроек нет, используем настройки по умолчанию
+      plugin = Redmine::Plugin.find(:redmine_project_progress)
+      default_settings = plugin.settings
+      settings = default_settings[:default] || default_settings
+      show_in_sidebar = settings['show_in_sidebar'] == '1' || settings['show_in_sidebar'] == true
+    end
+  rescue => e
+    Rails.logger.error "Project Progress: Error in sidebar settings: #{e.message}"
+    # В случае ошибки используем настройки по умолчанию
+    plugin = Redmine::Plugin.find(:redmine_project_progress)
+    default_settings = plugin.settings
+    settings = default_settings[:default] || default_settings
+    show_in_sidebar = settings['show_in_sidebar'] == '1' || settings['show_in_sidebar'] == true
+  end
+%>
+
+<% if show_in_sidebar && User.current.logged? && @project.visible? %>
+  <%
+    progress = ProjectProgressCalculator.calculate(@project)
+    percentage = progress[:progress_percentage]
+  %>
+  
+  <h3><%= l(:label_project_progress) %></h3>
+  
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: <%= percentage %>%;"></div>
+    </div>
+    <div class="progress-text">
+      <%= progress[:closed_issues] %>/<%= progress[:total_issues] %> <%= l(:field_issues) %>
+    </div>
+  </div>
+  
+  <p class="small" style="text-align: center; margin-top: 5px;">
+    <%= link_to l(:button_details), project_project_progress_index_path(@project) %>
+  </p>
+<% end %>

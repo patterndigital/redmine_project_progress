@@ -1,0 +1,143 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'project_progress', :plugin => 'redmine_project_progress' %>
+<% end %>
+
+<div class="box">
+  <h3><%= l(:label_calculation_settings) %></h3>
+  
+  <p>
+    <label for="settings_default_calculation_method"><%= l(:label_default_calculation_method) %></label>
+    <%= select_tag 'settings[default_calculation_method]', 
+        options_for_select([
+          [l(:label_progress_by_status), 'progress_by_status'],
+          [l(:label_weighted_progress), 'weighted_progress'],
+          [l(:label_average_progress), 'average_progress']
+        ], @settings['default_calculation_method']),
+        :id => 'settings_default_calculation_method' %>
+    <br><em><%= l(:help_default_calculation_method) %></em>
+  </p>
+  
+  <p>
+    <label for="settings_priority_weights_high"><%= l(:label_priority_weight_high) %></label>
+    <%= text_field_tag 'settings[priority_weights_high]', @settings['priority_weights_high'], 
+        :id => 'settings_priority_weights_high', :size => 10 %>
+    <br><em>Вес для задач с высоким приоритетом</em>
+  </p>
+  
+  <p>
+    <label for="settings_priority_weights_normal"><%= l(:label_priority_weight_normal) %></label>
+    <%= text_field_tag 'settings[priority_weights_normal]', @settings['priority_weights_normal'], 
+        :id => 'settings_priority_weights_normal', :size => 10 %>
+    <br><em>Вес для задач с обычным приоритетом</em>
+  </p>
+  
+  <p>
+    <label for="settings_priority_weights_low"><%= l(:label_priority_weight_low) %></label>
+    <%= text_field_tag 'settings[priority_weights_low]', @settings['priority_weights_low'], 
+        :id => 'settings_priority_weights_low', :size => 10 %>
+    <br><em>Вес для задач с низким приоритетом</em>
+  </p>
+  
+  <p>
+    <label for="settings_story_points_patterns"><%= l(:label_story_points_patterns) %></label>
+    <%= text_field_tag 'settings[story_points_patterns]', @settings['story_points_patterns'], 
+        :id => 'settings_story_points_patterns', :size => 50 %>
+    <br><em><%= l(:help_story_points_patterns) %></em>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_basic_settings) %></h3>
+  
+  <p>
+    <label for="settings_include_subtasks"><%= l(:label_include_subtasks) %></label>
+    <%= check_box_tag 'settings[include_subtasks]', '1', @settings['include_subtasks'] == '1' || @settings['include_subtasks'] == true, 
+        :id => 'settings_include_subtasks' %>
+    <br><em>Включать подзадачи в расчет прогресса</em>
+  </p>
+  
+  <p>
+    <label for="settings_include_closed_issues"><%= l(:label_include_closed_issues) %></label>
+    <%= check_box_tag 'settings[include_closed_issues]', '1', @settings['include_closed_issues'] == '1' || @settings['include_closed_issues'] == true, 
+        :id => 'settings_include_closed_issues' %>
+    <br><em>Включать закрытые задачи в расчет прогресса</em>
+  </p>
+  
+  <p>
+    <label for="settings_minimum_issues_count"><%= l(:label_minimum_issues_count) %></label>
+    <%= text_field_tag 'settings[minimum_issues_count]', @settings['minimum_issues_count'], 
+        :id => 'settings_minimum_issues_count', :size => 10 %>
+    <br><em>Минимальное количество задач для отображения прогресса</em>
+  </p>
+  
+  <p>
+    <label for="settings_exclude_trackers"><%= l(:label_exclude_trackers) %></label>
+    <%= text_field_tag 'settings[exclude_trackers]', @settings['exclude_trackers'], 
+        :id => 'settings_exclude_trackers', :size => 50 %>
+    <br><em>Типы задач для исключения (через запятую)</em>
+  </p>
+  
+  <p>
+    <label for="settings_exclude_priorities"><%= l(:label_exclude_priorities) %></label>
+    <%= text_field_tag 'settings[exclude_priorities]', @settings['exclude_priorities'], 
+        :id => 'settings_exclude_priorities', :size => 50 %>
+    <br><em>Приоритеты для исключения (через запятую)</em>
+  </p>
+  
+  <p>
+    <label for="settings_show_in_sidebar"><%= l(:label_show_in_sidebar) %></label>
+    <%= check_box_tag 'settings[show_in_sidebar]', '1', @settings['show_in_sidebar'] == '1' || @settings['show_in_sidebar'] == true, 
+        :id => 'settings_show_in_sidebar' %>
+    <br><em><%= l(:help_show_in_sidebar) %></em>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_performance_settings) %></h3>
+  
+  <p>
+    <label for="settings_js_init_delay"><%= l(:label_js_init_delay) %></label>
+    <%= text_field_tag 'settings[js_init_delay]', @settings['js_init_delay'], 
+        :id => 'settings_js_init_delay', :size => 10 %> <%= l(:label_milliseconds) %>
+    <br><em><%= l(:help_js_init_delay) %></em>
+  </p>
+  
+  <p>
+    <label for="settings_js_retry_interval"><%= l(:label_js_retry_interval) %></label>
+    <%= text_field_tag 'settings[js_retry_interval]', @settings['js_retry_interval'], 
+        :id => 'settings_js_retry_interval', :size => 10 %> <%= l(:label_milliseconds) %>
+    <br><em><%= l(:help_js_retry_interval) %></em>
+  </p>
+  
+  <p>
+    <label for="settings_js_max_retry_time"><%= l(:label_js_max_retry_time) %></label>
+    <%= text_field_tag 'settings[js_max_retry_time]', @settings['js_max_retry_time'], 
+        :id => 'settings_js_max_retry_time', :size => 10 %> <%= l(:label_milliseconds) %>
+    <br><em><%= l(:help_js_max_retry_time) %></em>
+  </p>
+  
+  <p>
+    <label for="settings_js_animation_duration"><%= l(:label_js_animation_duration) %></label>
+    <%= text_field_tag 'settings[js_animation_duration]', @settings['js_animation_duration'], 
+        :id => 'settings_js_animation_duration', :size => 10 %> <%= l(:label_milliseconds) %>
+    <br><em><%= l(:help_js_animation_duration) %></em>
+  </p>
+</div>
+
+<div class="box">
+  <h3><%= l(:label_debug_settings) %></h3>
+  
+  <p>
+    <label for="settings_enable_debug_logging"><%= l(:label_enable_debug_logging) %></label>
+    <%= check_box_tag 'settings[enable_debug_logging]', '1', @settings['enable_debug_logging'] == '1' || @settings['enable_debug_logging'] == true, 
+        :id => 'settings_enable_debug_logging' %>
+    <br><em><%= l(:help_enable_debug_logging) %></em>
+  </p>
+  
+  <p>
+    <label for="settings_log_calculation_details"><%= l(:label_log_calculation_details) %></label>
+    <%= check_box_tag 'settings[log_calculation_details]', '1', @settings['log_calculation_details'] == '1' || @settings['log_calculation_details'] == true, 
+        :id => 'settings_log_calculation_details' %>
+    <br><em><%= l(:help_log_calculation_details) %></em>
+  </p>
+</div>

@@ -1,0 +1,118 @@
+<% html_title l(:label_project_progress) -%>
+
+<h2><%= l(:label_project_progress) %>: <%= @project.name %></h2>
+
+<% if @error %>
+<div class="flash error">
+  <%= @error %>
+</div>
+<% end %>
+
+<div class="progress-overview box">
+  <h3><%= l(:label_overall_progress) %></h3>
+  <div class="progress-container">
+    <div class="progress-bar large">
+      <div class="progress-fill" style="width: <%= @progress[:progress_percentage] %>%;"></div>
+    </div>
+    <div class="progress-text">
+      <%= @progress[:closed_issues] %> / <%= @progress[:total_issues] %> <%= l(:field_issues) %>
+      (<%= @progress[:progress_percentage] %>% <%= l(:field_completed) %>)
+    </div>
+  </div>
+</div>
+
+<% if @progress[:by_tracker].any? %>
+<div class="box">
+  <h3><%= l(:label_by_tracker) %></h3>
+  <table class="list progress-table">
+    <thead>
+      <tr>
+        <th><%= l(:field_tracker) %></th>
+        <th width="15%"><%= l(:field_total) %></th>
+        <th width="15%"><%= l(:field_closed) %></th>
+        <th width="40%"><%= l(:field_progress) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @progress[:by_tracker].each do |tracker, data| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= tracker %></td>
+          <td class="center"><%= data[:total] %></td>
+          <td class="center"><%= data[:closed] %></td>
+          <td>
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: <%= data[:percentage] %>%;"></div>
+              </div>
+              <div class="progress-percentage"><%= data[:percentage] %>%</div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<% if @progress[:by_version].any? %>
+<div class="box">
+  <h3><%= l(:label_by_version) %></h3>
+  <table class="list progress-table">
+    <thead>
+      <tr>
+        <th><%= l(:field_version) %></th>
+        <th width="15%"><%= l(:field_total) %></th>
+        <th width="15%"><%= l(:field_closed) %></th>
+        <th width="40%"><%= l(:field_progress) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @progress[:by_version].each do |version, data| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= version %></td>
+          <td class="center"><%= data[:total] %></td>
+          <td class="center"><%= data[:closed] %></td>
+          <td>
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: <%= data[:percentage] %>%;"></div>
+              </div>
+              <div class="progress-percentage"><%= data[:percentage] %>%</div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<% if @progress[:by_status].any? %>
+<div class="box">
+  <h3><%= l(:label_by_status) %></h3>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_status) %></th>
+        <th width="15%"><%= l(:field_count) %></th>
+        <th width="15%"><%= l(:field_story_points) %></th>
+        <th width="15%"><%= l(:field_progress) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @progress[:by_status].each do |status, data| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= status %></td>
+          <td class="center"><%= data[:count] %></td>
+          <td class="center"><%= data[:total_story_points] %></td>
+          <td class="center"><%= data[:average_progress] %>%</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<div class="contextual">
+  <%= link_to l(:button_back), project_path(@project) %>
+</div>
